@@ -40,6 +40,7 @@
 <nav class="subnav">
   <div class="wrap subnav-inner">
     <a href="#abstract">Abstract</a>
+    <a href="#overview">Method Overview</a>
     <a href="#examples">Generated Examples</a>
     <a href="#main-results">Main Results</a>
     <a href="#ablation">Ablation Study</a>
@@ -63,6 +64,31 @@
       Experimental results demonstrate that our method achieves a favorable trade-off between audio-visual alignment
       and preservation of the source audio structure.
     </p>
+  </section>
+
+  <section id="overview" class="section">
+    <h2>Method Overview</h2>
+    <div class="figure">
+      <img src="images/overview.png" alt="Overview of the proposed pipeline: the source video is edited by an off-the-shelf video editing model, and the audio is then generated from the target video, text prompt, and acoustic features of the source audio."
+           onerror="this.closest('.figure').classList.add('figure--missing')">
+      <p class="figure-fallback-note">
+        Figure not yet available here — see Fig. 1 in the paper
+        (<a href="https://arxiv.org/abs/2512.07209" target="_blank" rel="noopener">arXiv</a>).
+      </p>
+    </div>
+    <p>
+      We first edit the video with an off-the-shelf video editing model (e.g., VACE), then edit the audio with our
+      video-to-audio model, which conditions on the target video, a text prompt, and acoustic features of the source
+      audio.
+    </p>
+    <ul class="findings">
+      <li><strong>Hierarchical acoustic features:</strong> frame-wise loudness computed over progressively finer
+        frequency bands captures the structure of the source audio, such as event timing, rather than its semantics.</li>
+      <li><strong>Training without paired data:</strong> features extracted from the target audio stand in for those
+        of the source audio, with masking augmentation along the detail and temporal axes.</li>
+      <li><strong>Adaptive conditioning:</strong> the level of detail is chosen from an editability score, preserving
+        fine structure for easy edits and only coarse structure for difficult ones.</li>
+    </ul>
   </section>
 
   <section id="examples" class="section">

@@ -43,6 +43,7 @@
     <a href="#examples">Generated Examples</a>
     <a href="#ablation">Ablation Study</a>
     <a href="#user-study">Subjective Evaluation</a>
+    <a href="#video-quality">Video Quality</a>
   </div>
 </nav>
 
@@ -151,6 +152,61 @@
       </table>
     </div>
     <p class="table-caption">Mean opinion score &plusmn; 95% confidence interval. Bold indicates the best score per column.</p>
+  </section>
+
+  <section id="video-quality" class="section">
+    <h2>Video Quality</h2>
+    <p>
+      We evaluate the quality of the edited videos on AvED-Bench following the VBench protocol. Our pipeline uses an
+      off-the-shelf video editing method (<strong>RAVE</strong> or <strong>VACE</strong>) as its first stage, so the
+      edited video is identical regardless of the audio editing method applied afterwards; we therefore compare these
+      video editing methods against the joint audio-visual editing baseline <strong>AvED</strong>.
+    </p>
+    <div class="table-scroll">
+      <table class="results-table">
+        <thead>
+          <tr>
+            <th>Method</th>
+            <th>Subject consistency &uarr;</th>
+            <th>Background consistency &uarr;</th>
+            <th>Dynamic degree &uarr;</th>
+            <th>Motion smoothness &uarr;</th>
+            <th>Aesthetic quality &uarr;</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>AvED</td>
+            <td>0.84</td>
+            <td>0.92</td>
+            <td><strong>0.72</strong></td>
+            <td>0.96</td>
+            <td>0.42</td>
+          </tr>
+          <tr>
+            <td>RAVE</td>
+            <td><strong>0.91</strong></td>
+            <td><strong>0.94</strong></td>
+            <td>0.54</td>
+            <td><strong>0.98</strong></td>
+            <td>0.47</td>
+          </tr>
+          <tr>
+            <td>VACE</td>
+            <td>0.90</td>
+            <td>0.93</td>
+            <td>0.59</td>
+            <td><strong>0.98</strong></td>
+            <td><strong>0.54</strong></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="table-caption">VBench scores of edited videos on AvED-Bench. Higher is better for all metrics. Bold indicates the best score per column.</p>
+    <p>
+      Both RAVE and VACE outperform AvED in four of the five metrics, all except dynamic degree, supporting the benefit
+      of leveraging recent video editing models in our sequential pipeline.
+    </p>
   </section>
 
 </main>

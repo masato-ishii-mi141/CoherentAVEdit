@@ -41,6 +41,7 @@
   <div class="wrap subnav-inner">
     <a href="#abstract">Abstract</a>
     <a href="#examples">Generated Examples</a>
+    <a href="#main-results">Main Results</a>
     <a href="#ablation">Ablation Study</a>
     <a href="#user-study">Subjective Evaluation</a>
     <a href="#video-quality">Video Quality</a>
@@ -75,6 +76,45 @@
 
     <div class="tabs" role="tablist" aria-label="Example selector"></div>
     <div class="panels"></div>
+  </section>
+
+  <section id="main-results" class="section">
+    <h2>Main Results</h2>
+    <p>
+      We compare three approaches to audio-visual editing on AvED-Bench: <strong>independent</strong> editing, where
+      the video is edited with RAVE or VACE and the audio with SDEdit or ZETA separately; <strong>sequential</strong>
+      editing, where the audio is edited after the video, either by our model (RAVE/VACE &rarr; Ours) or by a naive
+      video-to-audio model that ignores the source audio (RAVE/VACE &rarr; V2A); and <strong>joint</strong> editing
+      with AvED. Each plot shows structure preservation (LPAPS, lower is better) on the horizontal axis against
+      coarse-grained audio-visual alignment (IB-AV, higher is better), fine-grained audio-visual alignment (DeSync,
+      lower is better), and text fidelity (IB-TA, higher is better). For each method except V2A, we varied the
+      hyperparameters to obtain results with different degrees of structure preservation.
+    </p>
+    <div class="figure">
+      <img src="images/main_results.png" alt="Main results on AvED-Bench: LPAPS vs. IB-AV, DeSync, and IB-TA for independent, sequential, and joint audio-visual editing methods."
+           onerror="this.closest('.figure').classList.add('figure--missing')">
+      <p class="figure-fallback-note">
+        Figure not yet available here — see Fig. 4 in the paper
+        (<a href="https://arxiv.org/abs/2512.07209" target="_blank" rel="noopener">arXiv</a>) for the full results.
+      </p>
+    </div>
+    <ul class="findings">
+      <li><strong>Sequential editing gives the best alignment:</strong> by leveraging a state-of-the-art
+        video-to-audio architecture, sequential methods achieve much higher IB-AV and lower DeSync than independent
+        methods, which lack any audio-video alignment mechanism, and than AvED, which struggles to edit both
+        modalities jointly.</li>
+      <li><strong>Our model preserves the source audio structure:</strong> naive video-to-audio generation cannot
+        account for the source audio and yields poor structure preservation, whereas our model maintains the source
+        structure while achieving high audio-visual alignment and text fidelity. Its slightly worse DeSync than V2A
+        reflects an inherent trade-off: conditioning on the source audio constrains the model to retain the original
+        temporal structure.</li>
+      <li><strong>Better video editing helps:</strong> the advantage of RAVE &rarr; Ours is marginal, especially in
+        text fidelity, because RAVE sometimes fails to produce videos aligned with the text prompt, leaving our model
+        with semantically contradicting video and text conditions.</li>
+    </ul>
+    <p>
+      Video quality of the edited videos is reported in <a href="#video-quality">Video Quality</a>.
+    </p>
   </section>
 
   <section id="ablation" class="section">
